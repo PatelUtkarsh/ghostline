@@ -4,9 +4,7 @@ A WordPress plugin. A fake cursor moves, marks, or types the text that you selec
 
 ## Demo
 
-<video src="https://p.utkarsh.workers.dev/motion-cGPJK.mp4" controls muted playsinline width="720"></video>
-
-If the video does not play, [watch it on YouTube](https://youtu.be/XgIgxSXQCXU).
+[![Ghostline demo video](https://img.youtube.com/vi/XgIgxSXQCXU/maxresdefault.jpg)](https://youtu.be/XgIgxSXQCXU)
 
 ## Motions
 
