@@ -1,3 +1,5 @@
+![Ghostline: cursor animations for headings and paragraphs](.wordpress-org/banner-1544x500.png)
+
 # Ghostline
 
 A WordPress plugin. A fake cursor moves, marks, or types the text that you select, when the text scrolls into view. The motion reverses when you scroll back.
