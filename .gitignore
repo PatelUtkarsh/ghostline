@@ -1,0 +1,13 @@
+/node_modules/
+/vendor/
+/build/
+/artifacts/
+/test-results/
+/playwright-report/
+.phpunit.result.cache
+.phpunit.cache/
+.DS_Store
+*.log
+/tests/e2e/tmp/
+/ghostline.zip
+/docs/

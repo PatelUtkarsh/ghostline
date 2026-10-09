@@ -1,0 +1,136 @@
+// Frontend layer styles. The start state of a motion is applied by JS only.
+// Single-line motions: the text box moves or scales as one piece.
+.ghostline[data-ghostline-motion="move"],
+.ghostline[data-ghostline-motion="click"],
+.ghostline[data-ghostline-motion="type"],
+.ghostline[data-ghostline-motion="circle"],
+.ghostline[data-ghostline-motion="box"],
+.ghostline[data-ghostline-motion="replace"] {
+	position: relative;
+	isolation: isolate;
+	display: inline-block;
+}
+
+// Highlight: the runtime adds these classes to the nearest block ancestor,
+// which holds the layer below its text and the cursor above it.
+.ghostline-host {
+	isolation: isolate;
+}
+
+.ghostline-host--relative {
+	position: relative;
+}
+
+.ghostline__layer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+.ghostline__highlight {
+	position: absolute;
+	border-radius: 0.12em;
+	background-color: var(--ghostline-highlight-color, rgb(250 204 21 / 45%));
+}
+
+.ghostline__layer--above {
+	z-index: 1;
+}
+
+.ghostline__underline,
+.ghostline__strike {
+	position: absolute;
+	border-radius: 1px;
+	background-color: var(--ghostline-highlight-color, currentcolor);
+}
+
+.ghostline__text {
+	display: inline-block;
+}
+
+.ghostline__caret {
+	position: absolute;
+	top: 12%;
+	left: 0;
+	width: 2px;
+	height: 76%;
+	margin-left: -1px;
+	background-color: currentcolor;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.ghostline__shape {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 1px;
+	height: 1px;
+	overflow: visible;
+	pointer-events: none;
+
+	path {
+		fill: none;
+		stroke: var(--ghostline-highlight-color, currentcolor);
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-dasharray: 1;
+		stroke-dashoffset: 1;
+	}
+}
+
+.ghostline__from {
+	position: absolute;
+	top: 0;
+	left: 0;
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+.ghostline__ring {
+	position: absolute;
+	z-index: -1;
+	box-sizing: border-box;
+	border: 2px solid var(--ghostline-highlight-color, currentcolor);
+	border-radius: 50%;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.ghostline__cursor {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 24px;
+	height: 24px;
+	margin: -3.5px 0 0 -5px;
+	line-height: 0;
+	pointer-events: none;
+	opacity: 0;
+	transform-origin: 5px 3.5px;
+
+	svg {
+		display: block;
+		overflow: visible;
+		filter: drop-shadow(0 1px 1.5px rgb(0 0 0 / 30%));
+	}
+
+	path {
+		fill: #111;
+		stroke: #fff;
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		paint-order: stroke fill;
+	}
+
+	&--light path {
+		fill: #fff;
+		stroke: #111;
+	}
+}

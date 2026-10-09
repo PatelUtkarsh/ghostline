@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<ruleset name="Ghostline">
+	<description>Coding standards for the Ghostline plugin.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/tests/e2e/*</exclude-pattern>
+	<exclude-pattern>/tests/js/*</exclude-pattern>
+	<exclude-pattern>/artifacts/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg name="parallel" value="8"/>
+
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<rule ref="WordPress"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- PHPUnit needs the class name to match the file name. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/tests/php/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="ghostline"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="ghostline"/>
+				<element value="Ghostline"/>
+			</property>
+		</properties>
+		<!-- The test bootstrap defines the WordPress ABSPATH constant. -->
+		<exclude-pattern>/tests/php/bootstrap.php</exclude-pattern>
+	</rule>
+</ruleset>

@@ -1,0 +1,9 @@
+includes:
+	- vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	level: max
+	phpVersion: 80100
+	paths:
+		- ghostline.php
+		- includes

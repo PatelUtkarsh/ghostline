@@ -1,0 +1,15 @@
+// Editor-only indicator for text with the ghostline/motion format.
+.ghostline[data-ghostline-motion] {
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+}
+
+.ghostline-options__body {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 280px;
+	padding: 16px;
+}
