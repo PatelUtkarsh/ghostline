@@ -10,17 +10,17 @@ A WordPress plugin. A fake cursor moves, marks, or types the text that you selec
 
 ## Motions
 
-| Motion | What the cursor does |
-|---|---|
-| Move | Drags tilted text into its position |
-| Highlight | Selects the text; the highlight stays |
-| Underline | Draws a line below the text |
-| Strike | Draws a line through the text |
-| Click | Clicks the text; a ring spreads out |
-| Type | Types the text, one character at a time |
-| Circle | Draws a ring around the text |
-| Box | Draws a box around the text |
-| Replace | Strikes out old text, then types the new text |
+| Motion | What the cursor does | Preview |
+|---|---|---|
+| Move | Drags tilted text into its position | <img src=".github/readme/move.gif" width="360" alt="Move motion"> |
+| Highlight | Selects the text; the highlight stays | <img src=".github/readme/highlight.gif" width="360" alt="Highlight motion"> |
+| Underline | Draws a line below the text | <img src=".github/readme/underline.gif" width="360" alt="Underline motion"> |
+| Strike | Draws a line through the text | <img src=".github/readme/strike.gif" width="360" alt="Strike motion"> |
+| Click | Clicks the text; a ring spreads out | <img src=".github/readme/click.gif" width="360" alt="Click motion"> |
+| Type | Types the text, one character at a time | <img src=".github/readme/type.gif" width="360" alt="Type motion"> |
+| Circle | Draws a ring around the text | <img src=".github/readme/circle.gif" width="360" alt="Circle motion"> |
+| Box | Draws a box around the text | <img src=".github/readme/box.gif" width="360" alt="Box motion"> |
+| Replace | Strikes out old text, then types the new text | <img src=".github/readme/replace.gif" width="360" alt="Replace motion"> |
 
 ## Requirements
 

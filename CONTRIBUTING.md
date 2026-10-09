@@ -58,3 +58,7 @@ npm run brand       # banner and icon (PNG and icon.svg)
 ```
 
 The screenshots come from `tests/e2e/tools/wporg-assets.spec.js`. The usage is in the file header.
+
+## README GIFs
+
+The GIFs in `.github/readme/` come from `tests/e2e/tools/readme-gifs.spec.js`. The usage is in the file header.
