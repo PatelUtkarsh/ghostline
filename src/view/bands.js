@@ -41,3 +41,21 @@ export function getUnderlineBand( line ) {
 export function getStrikeBand( line ) {
 	return getBand( line, STRIKE_POSITION );
 }
+
+/**
+ * Returns the marker band of a line: lower and thinner than the line, and a
+ * little past both ends, like a stroke drawn by hand.
+ *
+ * @param {{left: number, top: number, width: number, height: number}} line Line rect.
+ * @return {{left: number, top: number, width: number, height: number}} Band rect.
+ */
+export function getMarkerBand( line ) {
+	const overshoot = Math.round( line.height * 0.12 );
+
+	return {
+		left: line.left - overshoot,
+		top: Math.round( line.top + line.height * 0.14 ),
+		width: line.width + overshoot * 2,
+		height: Math.round( line.height * 0.78 ),
+	};
+}

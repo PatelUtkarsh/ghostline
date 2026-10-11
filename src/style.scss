@@ -31,10 +31,16 @@
 	pointer-events: none;
 }
 
+// Marker stroke: uneven round ends and a small tilt that changes per line.
 .ghostline__highlight {
 	position: absolute;
-	border-radius: 0.12em;
+	border-radius: 0.55em 0.2em 0.5em 0.25em / 0.3em 0.45em 0.25em 0.5em;
 	background-color: var(--ghostline-highlight-color, rgb(250 204 21 / 45%));
+	transform: rotate(-0.6deg);
+
+	&:nth-child(2n) {
+		transform: rotate(0.4deg);
+	}
 }
 
 .ghostline__layer--above {

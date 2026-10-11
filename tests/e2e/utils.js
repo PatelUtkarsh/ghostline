@@ -1,5 +1,5 @@
 /**
- * Compares the highlight rects with the line boxes of the text.
+ * Compares the highlight rects with the marker bands of the text lines.
  *
  * @param {import('@playwright/test').Locator} element Wrapper locator.
  * @return {Promise<{lines: number, rects: number, maxError: number}>} Result.
@@ -32,23 +32,48 @@ function compareWithLines( element ) {
 			}
 		}
 
+		// The box before the tilt, relative to the layer.
+		const origin = layer.getBoundingClientRect();
 		const rects = [ ...layer.querySelectorAll( '.ghostline__highlight' ) ]
-			.map( ( el ) => el.getBoundingClientRect() )
+			.map( ( el ) => {
+				const [ left, top, width, height ] = [
+					'left',
+					'top',
+					'width',
+					'height',
+				].map( ( key ) => parseFloat( el.style[ key ] ) );
+				return {
+					left,
+					top,
+					right: left + width,
+					bottom: top + height,
+				};
+			} )
 			.sort( ( a, b ) => a.top - b.top );
 		lines.sort( ( a, b ) => a.top - b.top );
 
+		// Each rect is the marker band of its line (getMarkerBand in bands.js).
 		let maxError = 0;
 		rects.forEach( ( r, i ) => {
 			const l = lines[ i ];
 			if ( ! l ) {
 				return;
 			}
+			const height = l.bottom - l.top;
+			const overshoot = Math.round( height * 0.12 );
+			const top = Math.round( l.top - origin.top + height * 0.14 );
+			const band = {
+				left: l.left - origin.left - overshoot,
+				right: l.right - origin.left + overshoot,
+				top,
+				bottom: top + Math.round( height * 0.78 ),
+			};
 			maxError = Math.max(
 				maxError,
-				Math.abs( r.left - l.left ),
-				Math.abs( r.right - l.right ),
-				Math.abs( r.top - l.top ),
-				Math.abs( r.bottom - l.bottom )
+				Math.abs( r.left - band.left ),
+				Math.abs( r.right - band.right ),
+				Math.abs( r.top - band.top ),
+				Math.abs( r.bottom - band.bottom )
 			);
 		} );
 

@@ -1,6 +1,6 @@
 {
 	"name": "ghostline",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Cursor animations, linked to the scroll, for text in headings and paragraphs.",
 	"author": "Ghostline contributors",
 	"license": "GPL-2.0-or-later",
