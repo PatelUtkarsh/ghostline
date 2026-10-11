@@ -49,9 +49,16 @@ npm run plugin-zip  # makes ghostline.zip
 
 Run Plugin Check on the zip before you release.
 
+To release:
+
+1. Set the same version in `ghostline.php` (`Version`) and `readme.txt` (`Stable tag`). Add a changelog entry.
+2. Publish a GitHub release with the tag `v<version>`, for example `v1.0.1`.
+
+`.github/workflows/deploy.yml` then builds the zip, commits it to SVN `trunk/` and `tags/<version>/`, and attaches `ghostline.zip` to the release. It stops if the tag, `Version`, and `Stable tag` differ. A manual run of the workflow is a dry run. The workflow needs the repository secrets `SVN_USERNAME` and `SVN_PASSWORD`.
+
 ## WordPress.org assets
 
-The files in `.wordpress-org/` go to the `assets/` folder of the plugin SVN repository. They are not part of the plugin zip.
+The files in `.wordpress-org/` go to the `assets/` folder of the plugin SVN repository, except `demo.gif`. The deploy workflow copies them. They are not part of the plugin zip.
 
 ```sh
 npm run brand       # banner and icon (PNG and icon.svg)
