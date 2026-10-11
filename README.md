@@ -36,23 +36,10 @@ A WordPress plugin. A fake cursor moves, marks, or types the text that you selec
 
 ### With Composer
 
-Add the [WP Packages](https://wp-packages.org) repository to your `composer.json`:
-
-```json
-{
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://repo.wp-packages.org",
-			"only": [ "wp-plugin/*", "wp-theme/*" ]
-		}
-	]
-}
-```
-
-Then require the plugin:
+The package comes from [WP Packages](https://wp-packages.org). If your project does not use it yet, add the repository first:
 
 ```sh
+composer config repositories.wp-packages composer https://repo.wp-packages.org
 composer require wp-plugin/ghostline
 ```
 
