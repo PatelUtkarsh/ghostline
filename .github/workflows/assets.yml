@@ -1,0 +1,64 @@
+name: Update WordPress.org assets
+
+# Sends .wordpress-org/ and readme.txt to SVN without a new release, for
+# example new screenshots, the demo blueprint, or "Tested up to".
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Show the SVN changes, but do not commit them.
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-wporg
+  cancel-in-progress: false
+
+env:
+  SLUG: ghostline
+
+jobs:
+  assets:
+    name: Update assets and readme
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # The action also copies readme.txt to trunk. If Stable tag is not
+      # released yet, WordPress.org would serve unreleased trunk code.
+      - name: Check that Stable tag is released
+        run: |
+          stable=$(sed -n 's/^Stable tag: *//p' readme.txt)
+          status=$(curl -s -o /dev/null -w '%{http_code}' "https://plugins.svn.wordpress.org/$SLUG/tags/$stable/")
+          echo "Stable tag: $stable (SVN status $status)"
+          if [ "$status" != "200" ]; then
+            echo "::error::tags/$stable does not exist in SVN. Release it first."
+            exit 1
+          fi
+
+      - name: Prepare the directory assets
+        run: rsync -a --exclude demo.gif .wordpress-org/ dist/assets/
+
+      - name: Show the changes (dry run)
+        if: inputs.dry-run
+        run: |
+          sudo apt-get install -y subversion > /dev/null
+          svn checkout -q --depth immediates "https://plugins.svn.wordpress.org/$SLUG/" svn
+          svn update -q --set-depth infinity svn/assets svn/trunk
+          rsync -rc dist/assets/ svn/assets/ --delete
+          cp readme.txt svn/trunk/readme.txt
+          svn add -q --force svn/assets
+          svn status svn | grep '^!' | sed 's/! *//' | xargs -r svn rm -q
+          svn status svn
+
+      - name: Update assets and readme
+        if: ${{ ! inputs.dry-run }}
+        uses: 10up/action-wordpress-plugin-asset-update@2480306f6f693672726d08b5917ea114cb2825f7 # 2.2.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          ASSETS_DIR: dist/assets
+          IGNORE_OTHER_FILES: true
