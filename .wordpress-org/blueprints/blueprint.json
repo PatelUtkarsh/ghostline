@@ -1,0 +1,33 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Ghostline demo",
+		"description": "Installs Ghostline from WordPress.org and opens a page with all nine motions.",
+		"author": "utkarshpatel",
+		"categories": [
+			"Content"
+		]
+	},
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "ghostline"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once '/wordpress/wp-load.php';\n$content = <<<'HTML'\n<!-- wp:paragraph --><p>Scroll down. Each motion plays when its text scrolls into view, and plays in reverse when you scroll back. To change the motions, edit this page in the block editor.</p><!-- /wp:paragraph --><!-- wp:spacer {\"height\":\"40vh\"} --><div style=\"height:40vh\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div><!-- /wp:spacer --><!-- wp:heading --><h2 class=\"wp-block-heading\">Introducing <span data-ghostline-motion=\"move\" class=\"ghostline\">Intelligent UI</span></h2><!-- /wp:heading --><!-- wp:paragraph --><p><span data-ghostline-motion=\"highlight\" class=\"ghostline\">Highlight marks the first sentence of this paragraph, one line at a time.</span> The rest stays as it is.</p><!-- /wp:paragraph --><!-- wp:spacer {\"height\":\"40vh\"} --><div style=\"height:40vh\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div><!-- /wp:spacer --><!-- wp:paragraph --><p>Underline draws <span data-ghostline-motion=\"underline\" data-ghostline-color=\"accent-3\" class=\"ghostline\">a line below a phrase</span>, and strike draws <span data-ghostline-motion=\"strike\" class=\"ghostline\">a line through it</span>.</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class=\"wp-block-heading\">Then <span data-ghostline-motion=\"click\" data-ghostline-color=\"accent-3\" class=\"ghostline\">press Start</span> to begin</h2><!-- /wp:heading --><!-- wp:spacer {\"height\":\"40vh\"} --><div style=\"height:40vh\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div><!-- /wp:spacer --><!-- wp:heading --><h2 class=\"wp-block-heading\">Hello, <span data-ghostline-motion=\"type\" class=\"ghostline\">Intelligent UI</span></h2><!-- /wp:heading --><!-- wp:paragraph --><p>Circle marks the <span data-ghostline-motion=\"circle\" data-ghostline-color=\"accent-3\" class=\"ghostline\">key point</span>, and box marks <span data-ghostline-motion=\"box\" data-ghostline-color=\"accent-3\" class=\"ghostline\">another one</span>.</p><!-- /wp:paragraph --><!-- wp:spacer {\"height\":\"40vh\"} --><div style=\"height:40vh\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div><!-- /wp:spacer --><!-- wp:heading --><h2 class=\"wp-block-heading\">Ship it <span data-ghostline-motion=\"replace\" data-ghostline-from=\"next quarter\" class=\"ghostline\">this week</span></h2><!-- /wp:heading --><!-- wp:spacer {\"height\":\"40vh\"} --><div style=\"height:40vh\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div><!-- /wp:spacer -->\nHTML;\n$id = wp_insert_post(\n\tarray(\n\t\t'post_type'    => 'page',\n\t\t'post_status'  => 'publish',\n\t\t'post_title'   => 'Ghostline demo',\n\t\t'post_content' => $content,\n\t)\n);\nupdate_option( 'show_on_front', 'page' );\nupdate_option( 'page_on_front', $id );\n"
+		}
+	]
+}

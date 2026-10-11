@@ -4,6 +4,10 @@
 
 A WordPress plugin. A fake cursor moves, marks, or types the text that you select, when the text scrolls into view. The motion reverses when you scroll back.
 
+[![Try it in WordPress Playground](https://img.shields.io/badge/Try_it_in-WordPress_Playground-3858e9?logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/PatelUtkarsh/ghostline/main/.wordpress-org/blueprints/blueprint.json)
+
+The Playground link installs the newest release from WordPress.org and opens a page with all nine motions. It runs in your browser; nothing is installed on your computer.
+
 ## Demo
 
 [![Ghostline demo video](https://img.youtube.com/vi/XgIgxSXQCXU/maxresdefault.jpg)](https://youtu.be/XgIgxSXQCXU)

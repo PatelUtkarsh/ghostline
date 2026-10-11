@@ -66,6 +66,8 @@ npm run brand       # banner and icon (PNG and icon.svg)
 
 The screenshots come from `tests/e2e/tools/wporg-assets.spec.js`. The usage is in the file header.
 
+`.wordpress-org/blueprints/blueprint.json` is the demo blueprint. It installs the plugin from WordPress.org and creates a page with all nine motions. The README "Try it in WordPress Playground" button uses it from `main`, and in SVN it is the blueprint for the "Live Preview" button on WordPress.org. The `blueprint.json` in the root is for local development and tests.
+
 ## README GIFs
 
 The GIFs in `.github/readme/` come from `tests/e2e/tools/readme-gifs.spec.js`. The usage is in the file header.
