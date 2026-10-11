@@ -1,5 +1,6 @@
 import {
 	getBand,
+	getMarkerBand,
 	getStrikeBand,
 	getUnderlineBand,
 	STRIKE_POSITION,
@@ -47,5 +48,37 @@ describe( 'underline and strike', () => {
 		expect( band.top + band.height ).toBeLessThan(
 			line.top + line.height * 0.7
 		);
+	} );
+} );
+
+describe( 'getMarkerBand', () => {
+	it( 'sits in the lower part of the line, inside it', () => {
+		const band = getMarkerBand( line );
+		expect( band.top ).toBeGreaterThan( line.top );
+		expect( band.top + band.height ).toBeLessThanOrEqual(
+			line.top + line.height
+		);
+		expect( band.height ).toBeLessThan( line.height );
+	} );
+
+	it( 'goes a little past both ends of the line, by the same amount', () => {
+		const band = getMarkerBand( line );
+		const before = line.left - band.left;
+		const after = band.left + band.width - ( line.left + line.width );
+		expect( before ).toBeGreaterThan( 0 );
+		expect( before ).toBe( after );
+		expect( before ).toBeLessThan( line.height * 0.2 );
+	} );
+
+	it( 'uses whole pixels', () => {
+		const band = getMarkerBand( {
+			left: 3,
+			top: 7.4,
+			width: 99,
+			height: 33,
+		} );
+		for ( const value of Object.values( band ) ) {
+			expect( Number.isInteger( value ) ).toBe( true );
+		}
 	} );
 } );

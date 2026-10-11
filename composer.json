@@ -2,7 +2,7 @@
 	"name": "ghostline/ghostline",
 	"description": "Cursor animations, linked to the scroll, for text in headings and paragraphs.",
 	"type": "wordpress-plugin",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": ">=8.1"

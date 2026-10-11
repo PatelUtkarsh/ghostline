@@ -13,7 +13,7 @@ A WordPress plugin. A fake cursor moves, marks, or types the text that you selec
 | Motion | What the cursor does | Preview |
 |---|---|---|
 | Move | Drags tilted text into its position | <img src=".github/readme/move.gif" width="360" alt="Move motion"> |
-| Highlight | Selects the text; the highlight stays | <img src=".github/readme/highlight.gif" width="360" alt="Highlight motion"> |
+| Highlight | Marks the text; a marker stroke stays | <img src=".github/readme/highlight.gif" width="360" alt="Highlight motion"> |
 | Underline | Draws a line below the text | <img src=".github/readme/underline.gif" width="360" alt="Underline motion"> |
 | Strike | Draws a line through the text | <img src=".github/readme/strike.gif" width="360" alt="Strike motion"> |
 | Click | Clicks the text; a ring spreads out | <img src=".github/readme/click.gif" width="360" alt="Click motion"> |

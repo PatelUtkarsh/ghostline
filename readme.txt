@@ -4,7 +4,7 @@ Tags: animation, scroll animation, text animation, highlight, typography
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ https://youtu.be/XgIgxSXQCXU
 = Motions =
 
 * **Move**: The cursor drags tilted text into its position.
-* **Highlight**: The cursor selects the text. A highlight stays on each line.
+* **Highlight**: The cursor marks the text. A marker stroke stays on each line.
 * **Underline**: The cursor draws a line below the text.
 * **Strike**: The cursor draws a line through the text.
 * **Click**: The cursor clicks the text. A ring spreads out.
@@ -84,10 +84,16 @@ Yes. The motion follows the scroll. It plays when you scroll down and reverses w
 
 == Changelog ==
 
+= 1.1.0 =
+* Highlight now looks like a marker stroke: uneven round ends, a small tilt, and a little past the text.
+
 = 1.0.0 =
 * First release.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Highlight now looks like a marker stroke. Existing highlights get the new look. You do not have to change your content.
 
 = 1.0.0 =
 First release.
