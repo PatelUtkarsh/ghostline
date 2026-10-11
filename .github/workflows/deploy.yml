@@ -56,8 +56,9 @@ jobs:
         with:
           dry-run: ${{ github.event_name != 'release' }}
         env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          # Action 2.3.0 requires credentials even for a dry run, which never uses them.
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME || (github.event_name != 'release' && 'dry-run' || '') }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD || (github.event_name != 'release' && 'dry-run' || '') }}
           SLUG: ghostline
           VERSION: ${{ steps.version.outputs.version }}
           BUILD_DIR: dist/ghostline
