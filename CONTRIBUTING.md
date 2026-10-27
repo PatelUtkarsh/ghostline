@@ -58,7 +58,7 @@ To release:
 
 ## WordPress.org assets
 
-The files in `.wordpress-org/` go to the `assets/` folder of the plugin SVN repository, except `demo.gif`. The deploy workflow copies them. They are not part of the plugin zip.
+The files in `.wordpress-org/` go to the `assets/` folder of the plugin SVN repository. The deploy workflow copies them. They are not part of the plugin zip.
 
 To update the assets or `readme.txt` without a release, run the "Update WordPress.org assets" workflow from the Actions tab. By default it is a dry run that shows the SVN changes; clear "dry-run" to commit them. It stops if `Stable tag` is not released yet.
 
