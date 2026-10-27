@@ -40,7 +40,7 @@ jobs:
           fi
 
       - name: Prepare the directory assets
-        run: mkdir -p dist && rsync -a --exclude demo.gif .wordpress-org/ dist/assets/
+        run: mkdir -p dist && rsync -a .wordpress-org/ dist/assets/
 
       - name: Show the changes (dry run)
         if: inputs.dry-run

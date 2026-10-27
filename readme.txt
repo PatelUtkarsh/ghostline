@@ -77,10 +77,11 @@ Yes. The motion follows the scroll. It plays when you scroll down and reverses w
 
 == Screenshots ==
 
-1. The Ghostline options in the block editor.
-2. The Move motion.
-3. The Highlight motion.
-4. The other motions: Underline, Strike, Click, Type, Circle, Box, and Replace.
+1. Ghostline motions play as the reader scrolls, and play in reverse when the reader scrolls back.
+2. The Ghostline options in the block editor.
+3. The Move motion.
+4. The Highlight motion.
+5. The other motions: Underline, Strike, Click, Type, Circle, Box, and Replace.
 
 == Changelog ==
 

@@ -49,7 +49,7 @@ jobs:
           unzip -q ghostline.zip -d dist
 
       - name: Prepare the directory assets
-        run: rsync -a --exclude demo.gif .wordpress-org/ dist/assets/
+        run: rsync -a .wordpress-org/ dist/assets/
 
       - name: Deploy
         uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0

@@ -3,15 +3,15 @@
  *
  *     FRAMES=/tmp/wporg GHOSTLINE_SCRATCH=1 npx wp-scripts test-playwright tests/e2e/tools/wporg-assets.spec.js
  *
- * Then join the motion frames into screenshot-4.png:
+ * Then join the motion frames into screenshot-5.png:
  *
- *     magick motion-*.png -background white -append screenshot-4.png
+ *     magick motion-*.png -background white -append screenshot-5.png
  *
- * copy screenshot-*.png to .wordpress-org/, and build demo.gif from
+ * copy screenshot-*.png to .wordpress-org/, and build screenshot-1.gif from
  * demo-*.png (every second frame, palette from a frame with a highlight):
  *
  *     magick demo-045.png demo-020.png -crop 760x640+120+0 +repage -resize 600x -append +dither -colors 64 -unique-colors palette.png
- *     magick -delay 12 -loop 0 $(ls demo-*.png | awk 'NR%2==1') -crop 760x640+120+0 +repage -resize 600x +dither -remap palette.png -layers Optimize demo.gif
+ *     magick -delay 12 -loop 0 $(ls demo-*.png | awk 'NR%2==1') -crop 760x640+120+0 +repage -resize 600x +dither -remap palette.png -layers Optimize screenshot-1.gif
  */
 const { test } = require( '@wordpress/e2e-test-utils-playwright' );
 const { scrollTopTo } = require( '../utils' );
@@ -44,7 +44,7 @@ test.use( {
 	contextOptions: { reducedMotion: 'no-preference', strictSelectors: true },
 } );
 
-test( 'screenshot 1: options popover', async ( { admin, editor, page } ) => {
+test( 'screenshot 2: options popover', async ( { admin, editor, page } ) => {
 	await admin.createNewPost();
 	await editor.setPreferences( 'core/edit-post', { welcomeGuide: false } );
 	await page.setViewportSize( { width: 1280, height: 1000 } );
@@ -78,10 +78,10 @@ test( 'screenshot 1: options popover', async ( { admin, editor, page } ) => {
 		.or( popover.getByRole( 'button', { name: /Accent 1/ } ) )
 		.click();
 	await page.waitForTimeout( 400 );
-	await page.screenshot( { path: `${ OUT }/screenshot-1.png` } );
+	await page.screenshot( { path: `${ OUT }/screenshot-2.png` } );
 } );
 
-test( 'screenshots 2 and 3, demo frames', async ( { page, requestUtils } ) => {
+test( 'screenshots 3 and 4, demo frames', async ( { page, requestUtils } ) => {
 	const post = await requestUtils.createPost( {
 		title: 'Ghostline',
 		status: 'publish',
@@ -108,19 +108,19 @@ test( 'screenshots 2 and 3, demo frames', async ( { page, requestUtils } ) => {
 		};
 	};
 
-	// Screenshot 2: Move during the drag (progress about 0.42).
+	// Screenshot 3: Move during the drag (progress about 0.42).
 	await scrollTopTo( heading, 0.76 );
 	await page.waitForTimeout( 2500 );
 	await page.screenshot( {
-		path: `${ OUT }/screenshot-2.png`,
+		path: `${ OUT }/screenshot-3.png`,
 		clip: await clipAround( heading ),
 	} );
 
-	// Screenshot 3: Highlight during the selection (progress about 0.6).
+	// Screenshot 4: Highlight during the selection (progress about 0.6).
 	await scrollTopTo( highlight, 0.68 );
 	await page.waitForTimeout( 2500 );
 	await page.screenshot( {
-		path: `${ OUT }/screenshot-3.png`,
+		path: `${ OUT }/screenshot-4.png`,
 		clip: await clipAround( highlight ),
 	} );
 
@@ -140,7 +140,7 @@ test( 'screenshots 2 and 3, demo frames', async ( { page, requestUtils } ) => {
 	}
 } );
 
-test( 'screenshot 4 frames: the new motions, mid-motion', async ( {
+test( 'screenshot 5 frames: the new motions, mid-motion', async ( {
 	page,
 	requestUtils,
 } ) => {
